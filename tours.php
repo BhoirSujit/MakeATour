@@ -38,13 +38,9 @@ include('includes/config.php');
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Mentor
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  
 </head>
 
 <body>
@@ -68,26 +64,59 @@ include('includes/config.php');
 
     <!-- ======= Courses Section ======= -->
     <section id="courses" class="courses">
+    
       <div class="container" data-aos="fade-up">
-
+        <div class="row justify-content-end">
+        <form class="form-inline col-lg-4" method="GET" action="tours.php">
+          <div class="input-group">
+              <input class="form-control" type="text" name="query" placeholder="Search..." aria-label="Search">
+              
+              <div >
+                  <button class="btn btn-outline-success ms-2" type="submit">
+                      <i class="fas fa-search"></i>
+                  </button>
+              </div>
+          </div>
+      </form>
+        </div>
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
 
+        
 
-          <?php $sql = "SELECT * from tbltourpackages";
-$query = $dbh->prepare($sql);
-$query->execute();
-$results=$query->fetchAll(PDO::FETCH_OBJ);
-$cnt=1;
+
+          <?php 
+
+if(isset($_GET['query'])) {
+    $search_query = $_GET['query'];
+    $sql = "SELECT * FROM tbltourpackages WHERE PackageName LIKE :query OR PackageLocation LIKE :query";
+    $query = $dbh->prepare($sql);
+    $query->execute(array(':query' => '%' . $search_query . '%'));
+} else {
+    $sql = "SELECT * FROM tbltourpackages";
+    $query = $dbh->prepare($sql);
+    $query->execute();
+}
+
+$results = $query->fetchAll(PDO::FETCH_OBJ);
+$cnt = 1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {	?>
+  
+
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0 p-2">
             <div class="course-item">
               <div style="height:250px; overflow:hidden; display: flex;" class="">
+              <?php
+                    // Get the first image name
+                    $imageNames = explode(',', $result->PackageImage);
+                    $firstImageName = reset($imageNames);
+                    $imagePath = "admin/pacakgeimages/" . htmlentities($firstImageName);
+                    ?>
                 <img style="object-fit: cover; width: 100%;"
-                  src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-fluid"
+                  src="<?php echo $imagePath; ?>" class="img-fluid"
                   alt="...">
 
               </div>
@@ -142,6 +171,8 @@ foreach($results as $result)
 
       </div>
     </section><!-- End Courses Section -->
+
+    
 
   </main><!-- End #main -->
 

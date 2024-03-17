@@ -10,9 +10,23 @@ else{
 	$imgid=intval($_GET['imgid']);
 if(isset($_POST['submit']))
 {
+    $pimage = "";
+        $fileCount = count($_FILES["packageimage"]["name"]);
 
-$pimage=$_FILES["packageimage"]["name"];
-move_uploaded_file($_FILES["packageimage"]["tmp_name"],"pacakgeimages/".$_FILES["packageimage"]["name"]);
+        // Loop through each uploaded file
+        for ($i = 0; $i < $fileCount; $i++) {
+            $tempPath = $_FILES["packageimage"]["tmp_name"][$i];
+            $uploadPath = "pacakgeimages/" . $_FILES["packageimage"]["name"][$i];
+            $filename = $_FILES["packageimage"]["name"][$i];
+            
+            
+            // Move the uploaded file to its destination
+            if (move_uploaded_file($tempPath, $uploadPath)) {
+                $pimage .= ($pimage == "") ? $filename : ("," . $filename);
+            } else {
+                echo "Error uploading file " . $_FILES["packageimage"]["name"][$i] . ".<br>";
+            }
+        }
 $sql="update TblTourPackages set PackageImage=:pimage where PackageId=:imgid";
 $query = $dbh->prepare($sql);
 
@@ -102,7 +116,7 @@ $msg="Package Created Successfully";
                   <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Manage Enquiries</span>
                 </a>
                         </li>
-                        <li class="sidebar-item active">
+                        <li class="sidebar-item">
                             <a class="sidebar-link" href="manage-pages.php">
                   <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Manage Pages</span>
                 </a>
@@ -202,14 +216,25 @@ $msg="Package Created Successfully";
                <div class="form-group p-2">
                <label for="focusedinput" class="col-sm-2 form-label"> Package Image </label>
                <div class="col-sm-5">
-               <img src="pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" width="200">
-               </div>
+    <?php
+
+    $imageNames = explode(',', $result->PackageImage);
+
+
+    foreach ($imageNames as $imageName) {
+       
+        $imagePath = "pacakgeimages/" . htmlentities($imageName);
+        ?>
+        <img src="<?php echo $imagePath; ?>" width="200" alt="">
+    <?php } ?>
+</div>
+
                </div>
                                                                                                    
                <div class="form-group p-2">
                                                    <label for="focusedinput" class="col-sm-2 form-label">New Image</label>
                                                    <div class="col-sm-2">
-                                                       <input  class="form-control" type="file" name="packageimage" id="packageimage" required>
+                                                       <input  class="form-control" type="file" name="packageimage[]" id="packageimage" multiple required>
                                                    </div>
                                                </div>	
                                                <?php }} ?>

@@ -1,3 +1,13 @@
+<?php
+session_start();
+include('includes/config.php');
+if(strlen($_SESSION['alogin'])==0)
+	{	
+header('location:index.php');
+}
+else{
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +17,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
 	<meta name="author" content="AdminKit">
-	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+	<meta name="keywords"
+		content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link rel="shortcut icon" href="img/icons/icon-48x48.png" />
@@ -22,113 +33,126 @@
 
 <body>
 	<div class="wrapper">
-	<nav id="sidebar" class="sidebar js-sidebar">
-                <div class="sidebar-content js-simplebar">
-                    <a class="sidebar-brand" href="index.html">
-              <span class="align-middle">MakeATour</span>
-            </a>
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" href="index.html">
+					<span class="align-middle">MakeATour</span>
+				</a>
 
-                    <ul class="sidebar-nav">
-                        <li class="sidebar-header">
-                            Management
-                        </li>
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Management
+					</li>
 
-                        <li class="sidebar-item active">
-                            <a class="sidebar-link" href="dashboard.php">
-                  <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
-                </a>
-                        </li>
+					<li class="sidebar-item active">
+						<a class="sidebar-link" href="dashboard.php">
+							<i class="align-middle" data-feather="sliders"></i> <span
+								class="align-middle">Dashboard</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-item ">
-                            <a class="sidebar-link" href="create-package.php">
-                  <i class="align-middle" data-feather="plus-square"></i> <span class="align-middle">Create Package</span>
-                </a>
-                        </li>
+					<li class="sidebar-item ">
+						<a class="sidebar-link" href="create-package.php">
+							<i class="align-middle" data-feather="plus-square"></i> <span class="align-middle">Create
+								Package</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="manage-packages.php">
-                  <i class="align-middle" data-feather="grid"></i> <span class="align-middle">Manage Package</span>
-                </a>
-                        </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="manage-packages.php">
+							<i class="align-middle" data-feather="grid"></i> <span class="align-middle">Manage
+								Package</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="manage-users.php">
-                  <i class="align-middle" data-feather="users"></i> <span class="align-middle">Manage Users</span>
-                </a>
-                        </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="manage-users.php">
+							<i class="align-middle" data-feather="users"></i> <span class="align-middle">Manage
+								Users</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="manage-bookings.php">
-                  <i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Manage Booking</span>
-                </a>
-                        </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="manage-bookings.php">
+							<i class="align-middle" data-feather="briefcase"></i> <span class="align-middle">Manage
+								Booking</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="manageissues.php">
-                  <i class="align-middle" data-feather="slash"></i> <span class="align-middle">Manage Issues</span>
-                </a>
-                        </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="manageissues.php">
+							<i class="align-middle" data-feather="slash"></i> <span class="align-middle">Manage
+								Issues</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="manage-enquires.php">
-                  <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Manage Enquiries</span>
-                </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="manage-pages.php">
-                  <i class="align-middle" data-feather="layers"></i> <span class="align-middle">Manage Pages</span>
-                </a>
-                        </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="manage-enquires.php">
+							<i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Manage
+								Enquiries</span>
+						</a>
+					</li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="manage-pages.php">
+							<i class="align-middle" data-feather="layers"></i> <span class="align-middle">Manage
+								Pages</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-header">
-                            Profile
-                        </li>
+					<li class="sidebar-header">
+						Profile
+					</li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="profile.php">
-                  <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
-                </a>
-                        </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="profile.php">
+							<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="change-password.php">
-                  <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
-                </a>
-                        </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="change-password.php">
+							<i class="align-middle" data-feather="settings"></i> <span
+								class="align-middle">Settings</span>
+						</a>
+					</li>
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="logout.php">
-                  <i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Logout</span>
-                </a>
-                        </li>
+					<li class="sidebar-item">
+						<a class="sidebar-link" href="logout.php">
+							<i class="align-middle" data-feather="log-out"></i> <span class="align-middle">Logout</span>
+						</a>
+					</li>
 
-                    </ul>
+				</ul>
 
-                
-                </div>
-            </nav>
+
+			</div>
+		</nav>
 
 		<div class="main">
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
-          <i class="hamburger align-self-center"></i>
-        </a>
+					<i class="hamburger align-self-center"></i>
+				</a>
 
 				<div class="navbar-collapse collapse">
 					<ul class="navbar-nav navbar-align">
-						
-						
-						<li class="nav-item dropdown">
-							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                <i class="align-middle" data-feather="settings"></i>
-              </a>
 
-							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                <span class="text-dark">Admin</span>
-              </a>
+
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#"
+								data-bs-toggle="dropdown">
+								<i class="align-middle" data-feather="settings"></i>
+							</a>
+
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#"
+								data-bs-toggle="dropdown">
+								<span class="text-dark">Admin</span>
+							</a>
 							<div class="dropdown-menu dropdown-menu-end">
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i>Profile</a>
-								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="settings"></i> Settings</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1"
+										data-feather="user"></i>Profile</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1"
+										data-feather="settings"></i> Settings</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="#">Log out</a>
 							</div>
@@ -143,35 +167,16 @@
 					<h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
 
 					<div class="row">
-						<div class="col-xl-6 col-xxl-5 d-flex">
+						<div class="col-xl-12 col-xxl-12 d-flex">
 							<div class="w-100">
 								<div class="row">
-									<div class="col-sm-6">
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-users.php';">
 										<div class="card">
 											<div class="card-body">
 												<div class="row">
 													<div class="col mt-0">
-														<h5 class="card-title">Sales</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="truck"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">2.382</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Visitors</h5>
+														<h5 class="card-title">Users</h5>
 													</div>
 
 													<div class="col-auto">
@@ -180,149 +185,313 @@
 														</div>
 													</div>
 												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Sales</h5>
-													</div>
+												<h1 class="mt-1 mb-3"><span id="userCount">
+														<?php $sql = "SELECT id from tblusers";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cnt=$query->rowCount();
+					?>
+														<?php echo htmlentities($cnt);?>
 
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="truck"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">2.382</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Visitors</h5>
-													</div>
 
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="users"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
+													</span></h1>
 												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Sales</h5>
-													</div>
 
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="truck"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">2.382</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -3.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Visitors</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="users"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">14.212</h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 5.25% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									<div class="col-sm-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Earnings</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="dollar-sign"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">$21.300</h1>
-												<div class="mb-0">
-													<span class="text-success"> <i class="mdi mdi-arrow-bottom-right"></i> 6.65% </span>
-													<span class="text-muted">Since last week</span>
-												</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-body">
-												<div class="row">
-													<div class="col mt-0">
-														<h5 class="card-title">Orders</h5>
-													</div>
-
-													<div class="col-auto">
-														<div class="stat text-primary">
-															<i class="align-middle" data-feather="shopping-cart"></i>
-														</div>
-													</div>
-												</div>
-												<h1 class="mt-1 mb-3">64</h1>
-												<div class="mb-0">
-													<span class="text-danger"> <i class="mdi mdi-arrow-bottom-right"></i> -2.25% </span>
-													<span class="text-muted">Since last week</span>
+													<span class="text-muted">Total register users</span>
 												</div>
 											</div>
 										</div>
 									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manageissues.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Raised Issues</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="alert-circle"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span id="productCount">
+														<?php $sql5 = "SELECT id from tblissues";
+$query5= $dbh -> prepare($sql5);
+$query5->execute();
+$results5=$query5->fetchAll(PDO::FETCH_OBJ);
+$cnt5=$query5->rowCount();
+					?>
+														<?php echo htmlentities($cnt5);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">Raised Issue by users</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-packages.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Total Packages</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="grid"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span id="postCount">
+														<?php $sql3 = "SELECT PackageId from tbltourpackages";
+$query3= $dbh -> prepare($sql3);
+$query3->execute();
+$results3=$query3->fetchAll(PDO::FETCH_OBJ);
+$cnt3=$query3->rowCount();
+					?>
+														<?php echo htmlentities($cnt3);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">Total packages listed</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-enquires.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Enquiries</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="clipboard"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span>
+														<?php $sql2 = "SELECT id from tblenquiry";
+$query2= $dbh -> prepare($sql2);
+$query2->execute();
+$results2=$query2->fetchAll(PDO::FETCH_OBJ);
+$cnt2=$query2->rowCount();
+					?>
+														<?php echo htmlentities($cnt2);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">Total Enquiries by users</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-enquires.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">New Enquiries</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="file-plus"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span>
+														<?php $sql ="SELECT id from tblenquiry where (Status is null || Status='')";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$newenq=$query->rowCount();
+					?>
+														<?php echo htmlentities($newenq);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">New Enquiries by users</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-enquires.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Read Enquiries</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="check-square"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span>
+														<?php $sql5 ="SELECT id from tblenquiry where (Status='1')";
+													$query5= $dbh -> prepare($sql5);
+													$query5->execute();
+													$results5=$query5->fetchAll(PDO::FETCH_OBJ);
+													$redenq=$query5->rowCount();
+																		?>
+														<?php echo htmlentities($redenq);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">Total answered Enquiries</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-bookings.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Bookings</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="briefcase"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span>
+														<?php $sql1 = "SELECT BookingId from tblbooking";
+													$query1 = $dbh -> prepare($sql1);
+													$query1->execute();
+													$results1=$query1->fetchAll(PDO::FETCH_OBJ);
+													$cnt1=$query1->rowCount();
+																		?>
+														<?php echo htmlentities($cnt1);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">Total Bookings by users</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-bookings.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">New Bookings</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="plus-square"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span>
+														<?php $sql ="SELECT BookingId from tblbooking where (status is null || status='')";
+					$query = $dbh -> prepare($sql);
+					$query->execute();
+					$results=$query->fetchAll(PDO::FETCH_OBJ);
+					$newbookings=$query->rowCount();
+										?>
+														<?php echo htmlentities($newbookings);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">New Bookings by users</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-bookings.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Cancelled Bookings</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="slash"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span>
+														<?php $sql ="SELECT BookingId from tblbooking where (status='2')";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cancelbooking=$query->rowCount();
+					?>
+														<?php echo htmlentities($cancelbooking);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">Cancelled Bookings</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-sm-6" style="cursor: pointer;"
+										onclick="window.location.href='manage-bookings.php';">
+										<div class="card">
+											<div class="card-body">
+												<div class="row">
+													<div class="col mt-0">
+														<h5 class="card-title">Confirm Bookings</h5>
+													</div>
+
+													<div class="col-auto">
+														<div class="stat text-primary">
+															<i class="align-middle" data-feather="check-square"></i>
+														</div>
+													</div>
+												</div>
+												<h1 class="mt-1 mb-3"><span>
+														<?php $sql ="SELECT BookingId from tblbooking where (status='1')";
+$query = $dbh -> prepare($sql);
+$query->execute();
+$results=$query->fetchAll(PDO::FETCH_OBJ);
+$cancelbooking=$query->rowCount();
+					?>
+														<?php echo htmlentities($cancelbooking);?>
+													</span></h1>
+												<div class="mb-0">
+
+													<span class="text-muted">Total Conform bookings</span>
+												</div>
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>
+
+
 					</div>
 
-					
+
+
 				</div>
 			</main>
 
@@ -359,7 +528,7 @@
 	<script src="js/app.js"></script>
 
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
 			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
 			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
@@ -429,7 +598,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			// Pie chart
 			new Chart(document.getElementById("chartjs-dashboard-pie"), {
 				type: "pie",
@@ -457,7 +626,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			// Bar chart
 			new Chart(document.getElementById("chartjs-dashboard-bar"), {
 				type: "bar",
@@ -501,47 +670,47 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var markers = [{
-					coords: [31.230391, 121.473701],
-					name: "Shanghai"
-				},
-				{
-					coords: [28.704060, 77.102493],
-					name: "Delhi"
-				},
-				{
-					coords: [6.524379, 3.379206],
-					name: "Lagos"
-				},
-				{
-					coords: [35.689487, 139.691711],
-					name: "Tokyo"
-				},
-				{
-					coords: [23.129110, 113.264381],
-					name: "Guangzhou"
-				},
-				{
-					coords: [40.7127837, -74.0059413],
-					name: "New York"
-				},
-				{
-					coords: [34.052235, -118.243683],
-					name: "Los Angeles"
-				},
-				{
-					coords: [41.878113, -87.629799],
-					name: "Chicago"
-				},
-				{
-					coords: [51.507351, -0.127758],
-					name: "London"
-				},
-				{
-					coords: [40.416775, -3.703790],
-					name: "Madrid "
-				}
+				coords: [31.230391, 121.473701],
+				name: "Shanghai"
+			},
+			{
+				coords: [28.704060, 77.102493],
+				name: "Delhi"
+			},
+			{
+				coords: [6.524379, 3.379206],
+				name: "Lagos"
+			},
+			{
+				coords: [35.689487, 139.691711],
+				name: "Tokyo"
+			},
+			{
+				coords: [23.129110, 113.264381],
+				name: "Guangzhou"
+			},
+			{
+				coords: [40.7127837, -74.0059413],
+				name: "New York"
+			},
+			{
+				coords: [34.052235, -118.243683],
+				name: "Los Angeles"
+			},
+			{
+				coords: [41.878113, -87.629799],
+				name: "Chicago"
+			},
+			{
+				coords: [51.507351, -0.127758],
+				name: "London"
+			},
+			{
+				coords: [40.416775, -3.703790],
+				name: "Madrid "
+			}
 			];
 			var map = new jsVectorMap({
 				map: "world",
@@ -568,7 +737,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
 			var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
 			document.getElementById("datetimepicker-dashboard").flatpickr({
@@ -583,3 +752,4 @@
 </body>
 
 </html>
+<?php } ?>

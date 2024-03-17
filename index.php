@@ -202,9 +202,15 @@ foreach($results as $result)
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0 p-2">
             <div class="course-item">
-              <div style="height:250px; overflow:hidden; display: flex;" class="">
+            <div style="height:250px; overflow:hidden; display: flex;" class="">
+              <?php
+                    // Get the first image name
+                    $imageNames = explode(',', $result->PackageImage);
+                    $firstImageName = reset($imageNames);
+                    $imagePath = "admin/pacakgeimages/" . htmlentities($firstImageName);
+                    ?>
                 <img style="object-fit: cover; width: 100%;"
-                  src="admin/pacakgeimages/<?php echo htmlentities($result->PackageImage);?>" class="img-fluid"
+                  src="<?php echo $imagePath; ?>" class="img-fluid"
                   alt="...">
 
               </div>

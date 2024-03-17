@@ -288,8 +288,20 @@ foreach($results as $result)
                                                         <label for="focusedinput" class="col-sm-2 form-label">Package
                                                             Image</label>
                                                         <div class="col-sm-5">
-                                                            <img src="pacakgeimages/<?php echo htmlentities($result->PackageImage);?>"
-                                                                width="200">&nbsp;&nbsp;&nbsp;<a
+                                                        <?php
+    // Split the comma-separated list of image names into an array
+    $imageNames = explode(',', $result->PackageImage);
+
+    // Iterate over each image name and display it
+    foreach ($imageNames as $imageName) {
+        // Construct the image path
+        $imagePath = "pacakgeimages/" . htmlentities($imageName);
+        ?>
+        <img src="<?php echo $imagePath; ?>" width="200" alt="">
+    <?php } ?>&nbsp;&nbsp;&nbsp;
+                                                                
+                                                                
+                                                                <a
                                                                 href="change-image.php?imgid=<?php echo htmlentities($result->PackageId);?>">Change
                                                                 Image</a>
                                                         </div>

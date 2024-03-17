@@ -12,9 +12,25 @@ if (strlen($_SESSION['alogin']) == 0) {
         $pprice = $_POST['packageprice'];
         $pfeatures = $_POST['packagefeatures'];
         $pdetails = $_POST['packagedetails'];
-        $pimage = $_FILES["packageimage"]["name"];
-        move_uploaded_file($_FILES["packageimage"]["tmp_name"], "pacakgeimages/" . $_FILES["packageimage"]["name"]);
-        $sql = "INSERT INTO tbltourpackages(PackageName,PackageType,PackageLocation,PackagePrice,PackageFetures,PackageDetails,PackageImage) VALUES(:pname,:ptype,:plocation,:pprice,:pfeatures,:pdetails,:pimage)";
+        $pimage = "";
+        $fileCount = count($_FILES["packageimage"]["name"]);
+
+        // Loop through each uploaded file
+        for ($i = 0; $i < $fileCount; $i++) {
+            $tempPath = $_FILES["packageimage"]["tmp_name"][$i];
+            $uploadPath = "pacakgeimages/" . $_FILES["packageimage"]["name"][$i];
+            $filename = $_FILES["packageimage"]["name"][$i];
+            
+            
+            // Move the uploaded file to its destination
+            if (move_uploaded_file($tempPath, $uploadPath)) {
+                $pimage .= ($pimage == "") ? $filename : ("," . $filename);
+            } else {
+                echo "Error uploading file " . $_FILES["packageimage"]["name"][$i] . ".<br>";
+            }
+        }
+       
+          $sql = "INSERT INTO tbltourpackages(PackageName,PackageType,PackageLocation,PackagePrice,PackageFetures,PackageDetails,PackageImage) VALUES(:pname,:ptype,:plocation,:pprice,:pfeatures,:pdetails,:pimage)";
         $query = $dbh->prepare($sql);
         $query->bindParam(':pname', $pname, PDO::PARAM_STR);
         $query->bindParam(':ptype', $ptype, PDO::PARAM_STR);
@@ -232,7 +248,7 @@ if (strlen($_SESSION['alogin']) == 0) {
     <div class="form-group p-2">
                                         <label for="focusedinput" class="col-sm-2 form-label">Package Image</label>
                                         <div class="col-sm-5">
-                                            <input class="form-control " type="file" name="packageimage" id="packageimage" required>
+                                            <input class="form-control " type="file" name="packageimage[]" id="packageimage" multiple required>
                                         </div>
                                     </div>	
 
