@@ -126,7 +126,7 @@ foreach($results as $result)
 <?php }} ?>
 
 			<p style="width: 350px;">
-<button type="submit" name="submit6" class="btn-primary btn">Updtae</button>
+<button type="submit" name="submit6" class="btn-primary btn">Update</button>
 			</p>
 			</form>
 

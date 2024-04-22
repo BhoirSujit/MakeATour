@@ -195,7 +195,7 @@ $query->execute();
                 <div class="table-responsive">
                    
                       <table id="table" class="table table-bordered">
-                      <thead>
+                      <thead class="table-secondary">
                         <tr>
                         <th>Ticket id</th>
                           <th>Name</th>

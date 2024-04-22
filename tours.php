@@ -108,7 +108,8 @@ foreach($results as $result)
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0 p-2">
             <div class="course-item">
-              <div style="height:250px; overflow:hidden; display: flex;" class="">
+              <div style="height:250px; overflow:hidden; display: flex; position: relative;" class="">
+                
               <?php
                     // Get the first image name
                     $imageNames = explode(',', $result->PackageImage);
@@ -118,6 +119,17 @@ foreach($results as $result)
                 <img style="object-fit: cover; width: 100%;"
                   src="<?php echo $imagePath; ?>" class="img-fluid"
                   alt="...">
+                  <div style="position: absolute;
+                bottom: 10px;
+                right: 10px;
+                background-color: rgba(255, 255, 255, 0.8);
+                padding: 5px 10px;
+                border-radius: 5px;
+                font-size: 14px;
+                font-weight: bold;">
+                  <?php echo htmlentities($result->days);?> Days
+              </div>
+                  
 
               </div>
               <div class="course-content">

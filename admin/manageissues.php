@@ -192,7 +192,7 @@ popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status
                 <div class="table-responsive">
                     
                       <table id="table" class="table table-bordered">
-                      <thead>
+                      <thead class="table-secondary">
                         <tr>
                         <th>#</th>
                           <th>Name</th>

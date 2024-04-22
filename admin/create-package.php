@@ -9,6 +9,8 @@ if (strlen($_SESSION['alogin']) == 0) {
         $pname = $_POST['packagename'];
         $ptype = $_POST['packagetype'];
         $plocation = $_POST['packagelocation'];
+        $pml = $_POST['maplocation'];
+        $pdays = $_POST['packagedays'];
         $pprice = $_POST['packageprice'];
         $pfeatures = $_POST['packagefeatures'];
         $pdetails = $_POST['packagedetails'];
@@ -30,15 +32,17 @@ if (strlen($_SESSION['alogin']) == 0) {
             }
         }
        
-          $sql = "INSERT INTO tbltourpackages(PackageName,PackageType,PackageLocation,PackagePrice,PackageFetures,PackageDetails,PackageImage) VALUES(:pname,:ptype,:plocation,:pprice,:pfeatures,:pdetails,:pimage)";
+          $sql = "INSERT INTO tbltourpackages(PackageName,PackageType,PackageLocation,MapLocation,PackagePrice,PackageFetures,PackageDetails,PackageImage, days) VALUES(:pname,:ptype,:plocation,:pml,:pprice,:pfeatures,:pdetails,:pimage, :pdays)";
         $query = $dbh->prepare($sql);
         $query->bindParam(':pname', $pname, PDO::PARAM_STR);
         $query->bindParam(':ptype', $ptype, PDO::PARAM_STR);
         $query->bindParam(':plocation', $plocation, PDO::PARAM_STR);
+        $query->bindParam(':pml', $pml, PDO::PARAM_STR);
         $query->bindParam(':pprice', $pprice, PDO::PARAM_STR);
         $query->bindParam(':pfeatures', $pfeatures, PDO::PARAM_STR);
         $query->bindParam(':pdetails', $pdetails, PDO::PARAM_STR);
         $query->bindParam(':pimage', $pimage, PDO::PARAM_STR);
+        $query->bindParam(':pdays', $pdays, PDO::PARAM_STR);
         $query->execute();
         $lastInsertId = $dbh->lastInsertId();
         if ($lastInsertId) {
@@ -223,11 +227,23 @@ if (strlen($_SESSION['alogin']) == 0) {
                                             <input type="text" class="form-control" name="packagelocation" id="packagelocation" placeholder=" Package Location" required>
                                         </div>
                                     </div>
+                                    <div class="form-group p-2">
+                                        <label for="focusedinput" class="col-sm-2 form-label">Map Embedded Location</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" name="maplocation" id="maplocation" placeholder="Map Location" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group p-2">
+                                        <label for="focusedinput" class="col-sm-2 form-label">Duration in days</label>
+                                        <div class="col-sm-5">
+                                            <input type="number" class="form-control" name="packagedays" id="packagedays" placeholder="Days" required>
+                                        </div>
+                                    </div>
 
     <div class="form-group p-2">
                                         <label for="focusedinput" class="col-sm-2 form-label">Package Price in RS</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="packageprice" id="packageprice" placeholder=" Package Price is RS" required>
+                                            <input type="number" class="form-control" name="packageprice" id="packageprice" placeholder=" Package Price is RS" required>
                                         </div>
                                     </div>
 

@@ -13,19 +13,23 @@ if(isset($_POST['submit']))
 $pname=$_POST['packagename'];
 $ptype=$_POST['packagetype'];	
 $plocation=$_POST['packagelocation'];
+$pml=$_POST['maplocation'];
+$pdays = $_POST['packagedays'];
 $pprice=$_POST['packageprice'];	
 $pfeatures=$_POST['packagefeatures'];
 $pdetails=$_POST['packagedetails'];	
 $pimage=$_FILES["packageimage"]["name"];
-$sql="update TblTourPackages set PackageName=:pname,PackageType=:ptype,PackageLocation=:plocation,PackagePrice=:pprice,PackageFetures=:pfeatures,PackageDetails=:pdetails where PackageId=:pid";
+$sql="update TblTourPackages set PackageName=:pname,PackageType=:ptype,PackageLocation=:plocation,MapLocation=:pml,PackagePrice=:pprice,PackageFetures=:pfeatures,PackageDetails=:pdetails,days=:pdays where PackageId=:pid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':pname',$pname,PDO::PARAM_STR);
 $query->bindParam(':ptype',$ptype,PDO::PARAM_STR);
 $query->bindParam(':plocation',$plocation,PDO::PARAM_STR);
+$query->bindParam(':pml',$pml,PDO::PARAM_STR);
 $query->bindParam(':pprice',$pprice,PDO::PARAM_STR);
 $query->bindParam(':pfeatures',$pfeatures,PDO::PARAM_STR);
 $query->bindParam(':pdetails',$pdetails,PDO::PARAM_STR);
 $query->bindParam(':pid',$pid,PDO::PARAM_STR);
+$query->bindParam(':pdays', $pdays, PDO::PARAM_STR);
 $query->execute();
 $msg="Package Updated Successfully";
 }
@@ -251,10 +255,29 @@ foreach($results as $result)
                                                     </div>
 
                                                     <div class="form-group  p-2">
-                                                        <label for="focusedinput" class="col-sm-2 form-label">Package
-                                                            Price in USD</label>
+                                                        <label for="focusedinput" class="col-sm-2 form-label">Map Emmbeded
+                                                            Location</label>
                                                         <div class="col-sm-5">
-                                                            <input type="text" class="form-control" name="packageprice"
+                                                            <input type="text" class="form-control"
+                                                                name="maplocation" id="maplocation"
+                                                                placeholder=" Package Location"
+                                                                value="<?php echo htmlentities($result->MapLocation);?>"
+                                                                required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group p-2">
+                                        <label for="focusedinput" class="col-sm-2 form-label">Duration in days</label>
+                                        <div class="col-sm-5">
+                                            <input type="number" class="form-control" name="packagedays" id="packagedays" placeholder="Days" value="<?php echo htmlentities($result->days);?>" required>
+                                        </div>
+                                    </div>
+
+                                                    <div class="form-group  p-2">
+                                                        <label for="focusedinput" class="col-sm-2 form-label">Package
+                                                            Price in Rs</label>
+                                                        <div class="col-sm-5">
+                                                            <input type="number" class="form-control" name="packageprice"
                                                                 id="packageprice" placeholder=" Package Price is USD"
                                                                 value="<?php echo htmlentities($result->PackagePrice);?>"
                                                                 required>

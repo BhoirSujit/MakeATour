@@ -40,7 +40,7 @@ echo "<script type='text/javascript'> document.location = 'tours.php'; </script>
           <div class="mb-3">
             <label for="password" class="col-form-label">Password</label>
 			<input class="form-control" type="password" name="password" id="password" placeholder="Password" value="" required="">	
-			<a href="forgot-password.php">Forgot password</a>
+			<a href="change-password.php">Forgot password</a>
           </div>
 		  <div>
 		  <div class="d-grid gap-2">

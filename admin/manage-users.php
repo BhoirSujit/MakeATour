@@ -161,9 +161,9 @@ else{
                 <div class="table-responsive">
 					
 					    <table id="table" class="table table-bordered">
-						<thead>
+						<thead class="table-secondary">
 						  <tr>
-						  <th>#</th>
+						  <th >#</th>
 							<th>Name</th>
 							<th>Mobile No.</th>
 							<th>Email Id</th>

@@ -167,7 +167,7 @@ foreach($results as $result)
               foreach ($imageNames as $index => $imageName) {
                   $imagePath = "admin/pacakgeimages/" . htmlentities($imageName);
                   // Output HTML for carousel images
-                  echo '<img src="' . $imagePath . '" class="' . ($index === 0 ? 'active' : '') . '">';
+                  echo '<div class="img-fluid" ><img style="object-fit: cover;width: 100%;" src="' . $imagePath . '" class="' . ($index === 0 ? 'active' : '') . '"></div>';
               }
               ?>
             </div>
@@ -231,7 +231,12 @@ foreach($results as $result)
                 <?php echo htmlentities($result->PackageLocation);?>
               </p>
             </div>
-
+            <div class="course-info d-flex justify-content-between align-items-center">
+              <h5>Duration</h5>
+              <p>
+                <span id="packagedays"><?php echo htmlentities($result->days);?></span> days
+              </p>
+            </div>
 
 
             <div class="course-info d-flex justify-content-between align-items-center">
@@ -240,6 +245,7 @@ foreach($results as $result)
                 <?php echo htmlentities($result->PackagePrice);?>
               </p>
             </div>
+
 
             <form name="book" method="post">
               <div class="course-info d-flex justify-content-between align-items-center">
@@ -250,12 +256,37 @@ foreach($results as $result)
               <div class="course-info d-flex justify-content-between align-items-center">
                 <h5>Check Out</h5>
                 <p> <input class="form-control date datepicker" id="datepicker1" type="date" placeholder="dd-mm-yyyy"
-                    name="todate" required=""> </p>
+                    name="todate"  required="" readonly> </p>
               </div>
+
+              <script>
+                // Get the input elements
+                var fromDateInput = document.getElementsByName('fromdate')[0];
+                var toDateInput = document.getElementsByName('todate')[0];
+            
+                // Add event listener to 'fromdate' input
+                fromDateInput.addEventListener('change', function() {
+                    // Get the selected date from 'fromdate' input
+                    var fromDate = new Date(this.value);
+            
+                    var duration = document.getElementById('packagedays').textContent;
+            
+            
+                    // Calculate the check-out date by adding the duration to the check-in date
+                    var toDate = new Date(fromDate.getTime() + (duration * 24 * 60 * 60 * 1000));
+            
+                    // Format the date as 'yyyy-mm-dd' (required format for date inputs)
+                    var toDateFormatted = toDate.toISOString().slice(0, 10);
+            
+                    // Set the calculated check-out date to the 'todate' input
+                    toDateInput.value = toDateFormatted;
+                });
+            </script>
+              
 
               <div class="course-info justify-content-between align-items-center">
                 <div class="form-group mt-3">
-                  <textarea class="form-control" name="message" rows="5" placeholder="Query" required></textarea>
+                  <textarea class="form-control" name="comment" rows="5" placeholder="Comment" required></textarea>
                 </div>
               </div>
 
@@ -289,37 +320,17 @@ foreach($results as $result)
 
     
 
-
-    <!-- ======= Cource Details Tabs Section ======= -->
-    <section id="cource-details-tabs" class="cource-details-tabs p-2">
-
-
-
-      <div class="container" data-aos="fade-up">
-
-
-
-        <div class="map-eg" data-aos="fade-up">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d945.1180045802346!2d72.87024726962471!3d18.642802998904667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be87a414264a995%3A0x152f9b80c5aa77a1!2sJ.S.M%20Law%20Collage!5e0!3m2!1sen!2sus!4v1710526941676!5m2!1sen!2sus"
-            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
-
-        </div>
-
-
-
-      </div>
-
-
-
-
-
-
-    </section><!-- End Cource Details Tabs Section -->
+    <?php 
+    if ($result->MapLocation !== null)
+    { 
+      echo '<section id="cource-details-tabs" class="cource-details-tabs p-2"><div class="container" data-aos="fade-up"><div class="map-eg" data-aos="fade-up">';
+  echo $result->MapLocation;
+  
+          echo '</div></div></section>';
+    }?>
+      
 
     
-
 <!-- ======= Popular Courses Section ======= -->
 <section id="popular-courses" class="courses">
   <div class="container" data-aos="fade-up">
@@ -348,18 +359,30 @@ foreach($results as $result)
 
       <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0 p-2">
         <div class="course-item">
-        <div style="height:250px; overflow:hidden; display: flex;" class="">
-          <?php
-                // Get the first image name
-                $imageNames = explode(',', $result->PackageImage);
-                $firstImageName = reset($imageNames);
-                $imagePath = "admin/pacakgeimages/" . htmlentities($firstImageName);
-                ?>
-            <img style="object-fit: cover; width: 100%;"
-              src="<?php echo $imagePath; ?>" class="img-fluid"
-              alt="...">
+          <div style="height:250px; overflow:hidden; display: flex; position: relative;" class="">
+                
+            <?php
+                  // Get the first image name
+                  $imageNames = explode(',', $result->PackageImage);
+                  $firstImageName = reset($imageNames);
+                  $imagePath = "admin/pacakgeimages/" . htmlentities($firstImageName);
+                  ?>
+              <img style="object-fit: cover; width: 100%;"
+                src="<?php echo $imagePath; ?>" class="img-fluid"
+                alt="...">
+                <div style="position: absolute;
+              bottom: 10px;
+              right: 10px;
+              background-color: rgba(255, 255, 255, 0.8);
+              padding: 5px 10px;
+              border-radius: 5px;
+              font-size: 14px;
+              font-weight: bold;">
+                <?php echo htmlentities($result->days);?> Days
+            </div>
+                
 
-          </div>
+            </div>
           <div class="course-content">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h4>
