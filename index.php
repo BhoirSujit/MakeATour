@@ -37,14 +37,7 @@ include('includes/config.php');
   <link href="assets/css/style.css" rel="stylesheet">
 
   
- 
-  <!-- =======================================================
-  * Template Name: Mentor
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>

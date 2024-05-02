@@ -1,4 +1,5 @@
 <?php
+session_start();
 error_reporting(0);
 if(isset($_POST['submit']))
 {
@@ -16,6 +17,7 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
+$_SESSION['login']=$_POST['email'];
 $_SESSION['msg']="You are Scuccessfully registered. Now you can login ";
 header('location:thankyou.php');
 }

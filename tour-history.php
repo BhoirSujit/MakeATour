@@ -88,13 +88,6 @@ $error="You can't cancel booking before 24 hours";
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Mentor
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -143,7 +136,7 @@ $error="You can't cancel booking before 24 hours";
           <?php 
 
 $uemail=$_SESSION['login'];;
-$sql = "SELECT tblbooking.BookingId as bookid,tblbooking.PackageId as pkgid,tbltourpackages.PackageName as packagename,tblbooking.FromDate as fromdate,tblbooking.ToDate as todate,tblbooking.Comment as comment,tblbooking.status as status,tblbooking.RegDate as regdate,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblbooking join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId where UserEmail=:uemail";
+$sql = "SELECT tblbooking.BookingId as bookid,tblbooking.PackageId as pkgid,tbltourpackages.PackageName as packagename,tblbooking.paymentstatus as paymentstatus,tblbooking.FromDate as fromdate,tblbooking.ToDate as todate,tblbooking.Comment as comment,tblbooking.status as status,tblbooking.RegDate as regdate,tblbooking.CancelledBy as cancelby,tblbooking.UpdationDate as upddate from tblbooking join tbltourpackages on tbltourpackages.PackageId=tblbooking.PackageId where UserEmail=:uemail";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':uemail', $uemail, PDO::PARAM_STR);
 $query->execute();
@@ -195,15 +188,38 @@ echo "Canceled by admin at " .$result->upddate;
             <td>
               <?php echo htmlentities($result->regdate);?>
             </td>
-            <?php if($result->status==2)
-{
-	?>
+            <?php 
+if($result->status == 2) { 
+ 
+?>
             <td>Cancelled</td>
-            <?php } else {?>
-            <td><a href="tour-history.php?bkid=<?php echo htmlentities($result->bookid);?>"
+            <?php } else if($result->status == 1) { 
+
+?>
+            <td>
+
+
+
+              <a href="tour-history.php?bkid=<?php echo htmlentities($result->bookid);?>"
                 onclick="return confirm('Do you really want to cancel booking')">Cancel</a> /
-                <a href="javascript:void(0);" onclick='printReceipt("<?php echo htmlentities($result->bookid);?>")'>Print</a>
-              </td>
+                
+              <?php echo $paymentstatus;
+              if ($result->paymentstatus == 1) { ?>
+      
+        
+        <a href="javascript:void(0);" onclick='printReceipt("<?php echo htmlentities($result->bookid);?>")'>Print Receipt</a>
+    <?php } else { ?>
+   
+        <a href="javascript:void(0);" onclick='payNow("<?php echo htmlentities($result->bookid);?>")'>Pay Now</a>
+    <?php } ?>
+            </td>
+            <?php } else { 
+
+?>
+            <td>
+              <a href="tour-history.php?bkid=<?php echo htmlentities($result->bookid);?>"
+                onclick="return confirm('Do you really want to cancel booking')">Cancel</a>
+            </td>
             <?php }?>
           </tr>
           <?php $cnt=$cnt+1; }} ?>
@@ -213,12 +229,31 @@ echo "Canceled by admin at " .$result->upddate;
       </form>
       <script>
         function printReceipt(bookingId) {
-            window.open('receipt.php?bkid=' + bookingId, '_blank');
+          window.open('receipt.php?bkid=' + bookingId, '_blank');
         }
-        </script>
+      </script>
+
+      <script>
+        function payNow(bookingId) {
+          var form = document.createElement('form');
+          form.method = 'POST';
+          form.target = '_blank';
+          form.action = 'payment_gateway.php';
+
+          var input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = 'BookingId';
+          input.value = bookingId;
+          form.appendChild(input);
+
+          document.body.appendChild(form);
+          form.submit();
+        }
+      </script>
+
 
     </div>
-  </main><!-- End #main -->
+  </main>
 
   <?php include('includes/footer.php');?>
 

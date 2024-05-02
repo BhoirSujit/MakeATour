@@ -217,7 +217,11 @@ if (strlen($_SESSION['alogin']) == 0) {
     <div class="form-group  p-2">
                                         <label for="focusedinput" class="col-sm-2 form-label">Package Type</label>
                                         <div class="col-sm-5">
-                                            <input type="text" class="form-control" name="packagetype" id="packagetype" placeholder=" Package Type eg- Family Package / Couple Package" required>
+                                            <select class="form-control form-select" class="form-control" name="packagetype" id="packagetype" placeholder=" Package Type eg- Family Package / Couple Package" required>
+                                                    <option value="Group">Group</option>
+                                                    <option value="Couple">Couple</option>
+                                                    <option value="Family">Family</option>
+                                            </select>
                                         </div>
                                     </div>
 

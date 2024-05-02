@@ -8,6 +8,7 @@ $pid=intval($_GET['pkgid']);
 $useremail=$_SESSION['login'];
 $fromdate=$_POST['fromdate'];
 $todate=$_POST['todate'];
+
 $comment=$_POST['comment'];
 $status=0;
 $sql="INSERT INTO tblbooking(PackageId,UserEmail,FromDate,ToDate,Comment,status) VALUES(:pid,:useremail,:fromdate,:todate,:comment,:status)";
@@ -16,6 +17,7 @@ $query->bindParam(':pid',$pid,PDO::PARAM_STR);
 $query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 $query->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 $query->bindParam(':todate',$todate,PDO::PARAM_STR);
+
 $query->bindParam(':comment',$comment,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
@@ -246,6 +248,14 @@ foreach($results as $result)
               </p>
             </div>
 
+            <!-- <div class="course-info d-flex justify-content-between align-items-center">
+              <h5>No. of Memebers</h5>
+             
+              <p>
+                <input class="form-control  " id="membercount" type="number" max="15" 
+              name="membercount" required="" >
+              </p>
+            </div> -->
 
             <form name="book" method="post">
               <div class="course-info d-flex justify-content-between align-items-center">
@@ -286,7 +296,7 @@ foreach($results as $result)
 
               <div class="course-info justify-content-between align-items-center">
                 <div class="form-group mt-3">
-                  <textarea class="form-control" name="comment" rows="5" placeholder="Comment" required></textarea>
+                  <textarea class="form-control" name="comment" rows="5" placeholder="Comment" ></textarea>
                 </div>
               </div>
 

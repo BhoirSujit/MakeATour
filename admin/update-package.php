@@ -234,11 +234,13 @@ foreach($results as $result)
                                                         <label for="focusedinput" class="col-sm-2 form-label">Package
                                                             Type</label>
                                                         <div class="col-sm-5">
-                                                            <input type="text" class="form-control" name="packagetype"
-                                                                id="packagetype"
-                                                                placeholder=" Package Type eg- Family Package / Couple Package"
-                                                                value="<?php echo htmlentities($result->PackageType);?>"
-                                                                required>
+                                                        <select class="form-control form-select"  name="packagetype" id="packagetype" placeholder=" Package Type eg- Family Package / Couple Package" required>
+                                                     
+                                                        <option value="Group"<?php if ($result->PackageType == "Group") echo " selected"; ?>>Group</option>
+            <option value="Couple"<?php if ($result->PackageType == "Couple") echo " selected"; ?>>Couple</option>
+            <option value="Family"<?php if ($result->PackageType == "Family") echo " selected"; ?>>Family</option>
+                                            </select>
+                                                           
                                                         </div>
                                                     </div>
 

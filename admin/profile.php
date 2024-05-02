@@ -15,7 +15,7 @@ $name=$_POST['name'];
 $email=$_POST['email'];
 $mobile=$_POST['mobile'];
 
-$sql="update admin set Name=:name,EmailId=:email,MobileNumber=:mobile where UserName=:adminid";
+$sql="update admin set Name=:name,email=:email,mobile=:mobile where UserName=:adminid";
 $query = $dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
@@ -224,7 +224,7 @@ echo "<script> window.location.href = profile.php;</script>";
                                                                 <i class="fa fa-key"></i>
                                                             </span>
                                                             <input class="form-control" type="text" name="name"
-                                                                id="name" value="<?php echo $result->Name;?>">
+                                                                id="name" value="<?php echo $result->name;?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -237,7 +237,7 @@ echo "<script> window.location.href = profile.php;</script>";
                                                                 <i class="fa fa-key"></i>
                                                             </span>
                                                             <input class="form-control" type="text" name="email"
-                                                                id="email" value="<?php echo $result->EmailId;?>">
+                                                                id="email" value="<?php echo $result->email;?>">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -250,7 +250,7 @@ echo "<script> window.location.href = profile.php;</script>";
                                                                 <i class="fa fa-key"></i>
                                                             </span>
                                                             <input class="form-control" type="text" name="mobile"
-                                                                id="mobile" value="<?php echo $result->MobileNumber;?>">
+                                                                id="mobile" value="<?php echo $result->mobile;?>">
                                                         </div>
                                                     </div>
                                                 </div>

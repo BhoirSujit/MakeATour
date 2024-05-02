@@ -39,7 +39,7 @@ echo "<script type='text/javascript'> document.location = 'thankyou.php'; </scri
         <form name="help" method="post">
           <div class="mb-3">
         
-            <select id="country" name="issue" class="form-control frm-field required sect" required="">
+            <select id="country" name="issue" class="form-control frm-field required sect form-select" required="">
 														<option value="">Select Issue</option> 		
 														<option value="Booking Issues">Booking Issues</option>
 														<option value="Cancellation"> Cancellation</option>
