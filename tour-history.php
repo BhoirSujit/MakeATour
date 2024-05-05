@@ -122,7 +122,7 @@ $error="You can't cancel booking before 24 hours";
         <?php }?>
         <p>
         <table border="1" width="100%" class="table">
-          <tr align="center">
+          <tr align="center" class="table-secondary">
             <th>#</th>
             <th>Booking Id</th>
             <th>Package Name</th>

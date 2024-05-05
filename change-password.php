@@ -2,11 +2,10 @@
 session_start();
 error_reporting(0);
 include('includes/config.php');
-if(strlen($_SESSION['login'])==0)
-	{	
-header('location:index.php');
-}
-else{
+// Check if user is already logged in, if yes, redirect to tours page
+
+
+
 if(isset($_POST['submit5']))
 	{
 $password=md5($_POST['password']);
@@ -136,4 +135,3 @@ $error="Your current password is wrong";
 </body>
 
 </html>
-<?php } ?>
