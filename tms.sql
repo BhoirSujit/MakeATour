@@ -194,7 +194,7 @@ CREATE TABLE `tblusers` (
 --
 
 INSERT INTO `tblusers` (`id`, `FullName`, `MobileNumber`, `EmailId`, `Password`, `RegDate`, `UpdationDate`) VALUES
-(8, 'SUJIT J BHOIR', '9356027204', 'sujitbhoir004@gamil.com', '81dc9bdb52d04dc20036dbd8313ed055', '2024-03-10 18:49:29', '2024-03-11 17:41:40'),
+(8, 'SUJIT J BHOIR', '654534235434', 'sujitbhoir004@gamil.com', '81dc9bdb52d04dc20036dbd8313ed055', '2024-03-10 18:49:29', '2024-03-11 17:41:40'),
 (12, 'apeksha bhoir', '9284398403', 'apeksha@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2024-03-29 08:47:10', NULL),
 (15, 'seema bhoir', '9284398429', 'seema@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', '2024-04-27 10:26:22', NULL);
 
